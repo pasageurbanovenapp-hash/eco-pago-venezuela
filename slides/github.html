@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub para Estudiantes - Guía Interactiva</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
+            background: #0d1117;
+        }
+        
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        /* Animaciones personalizadas */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(45, 212, 191, 0.5); }
+            50% { box-shadow: 0 0 40px rgba(45, 212, 191, 0.8); }
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes typewriter {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .slide {
+            display: none;
+            animation: slideIn 0.6s ease-out;
+        }
+        
+        .slide.active {
+            display: flex;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #2dd4bf 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .code-block {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            transition: width 0.3s ease;
+        }
+        
+        /* Efecto de matrix para el fondo */
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1;
+        }
+    </style>
+</head>
+<body class="text-white h-screen flex flex-col">
+
+    <!-- Canvas para efecto de partículas -->
+    <canvas id="matrixCanvas" class="matrix-bg"></canvas>
+
+    <!-- Barra de progreso superior -->
+    <div class="fixed top-0 left-0 w-full h-1 bg-gray-800 z-50">
+        <div id="progressBar" class="h-full bg-gradient-to-r from-teal-400 to-blue-500 progress-bar" style="width: 0%"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="fixed top-0 w-full p-6 flex justify-between items-center z-40 glass-card">
+        <div class="flex items-center gap-3">
+            <i class="fab fa-github text-4xl text-white"></i>
+            <span class="text-xl font-bold tracking-wider">GitHub<span class="text-teal-400">EDU</span></span>
+        </div>
+        <div class="flex gap-2">
+            <span id="slideCounter" class="mono text-sm text-gray-400">1 / 10</span>
+        </div>
+    </header>
+
+    <!-- Controles de navegación -->
+    <button onclick="changeSlide(-1)" class="fixed left-6 top-1/2 transform -translate-y-1/2 z-40 p-4 rounded-full glass-card hover:bg-white/10 transition-all hover:scale-110 group">
+        <i class="fas fa-chevron-left text-2xl group-hover:text-teal-400 transition-colors"></i>
+    </button>
+    
+    <button onclick="changeSlide(1)" class="fixed right-6 top-1/2 transform -translate-y-1/2 z-40 p-4 rounded-full glass-card hover:bg-white/10 transition-all hover:scale-110 group">
+        <i class="fas fa-chevron-right text-2xl group-hover:text-teal-400 transition-colors"></i>
+    </button>
+
+    <!-- Contenedor principal de slides -->
+    <main class="flex-1 flex items-center justify-center p-8 pt-20 relative">
+        
+        <!-- SLIDE 1: Introducción -->
+        <div class="slide active flex-col items-center justify-center text-center max-w-5xl w-full" id="slide1">
+            <div class="mb-8 animate-float">
+                <i class="fab fa-github text-9xl text-white mb-6 inline-block"></i>
+            </div>
+            <h1 class="text-6xl md:text-8xl font-bold mb-6 leading-tight">
+                ¿Qué es <span class="gradient-text">GitHub</span>?
+            </h1>
+            <p class="text-2xl text-gray-400 mb-8 max-w-3xl">
+                La plataforma donde los desarrolladores construyen el futuro. 
+                <span class="text-teal-400 font-semibold">Control de versiones</span>, 
+                <span class="text-blue-400 font-semibold">colaboración</span> y 
+                <span class="text-purple-400 font-semibold">portafolio profesional</span> en un solo lugar.
+            </p>
+            <div class="flex gap-4 justify-center">
+                <div class="glass-card px-6 py-3 rounded-full flex items-center gap-2">
+                    <i class="fas fa-users text-teal-400"></i>
+                    <span class="mono">100M+ Desarrolladores</span>
+                </div>
+                <div class="glass-card px-6 py-3 rounded-full flex items-center gap-2">
+                    <i class="fas fa-globe text-blue-400"></i>
+                    <span class="mono">Global</span>
+                </div>
+            </div>
+            <p class="mt-12 text-gray-500 animate-pulse">Presiona → para comenzar el viaje</p>
+        </div>
+
+        <!-- SLIDE 2: El Problema -->
+        <div class="slide flex-col items-center justify-center max-w-6xl w-full" id="slide2">
+            <h2 class="text-5xl font-bold mb-12 text-center">El Problema: <span class="text-red-400">Antes de GitHub</span></h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
+                <div class="glass-card p-8 rounded-2xl hover:transform hover:scale-105 transition-all border-l-4 border-red-500">
+                    <div class="text-5xl mb-4">😱</div>
+                    <h3 class="text-2xl font-bold mb-3">versión_final_2.txt</h3>
+                    <p class="text-gray-400">¿Te suena familiar tener 10 versiones de un archivo con nombres como "final", "final_final", "final_definitivo"?</p>
+                </div>
+                <div class="glass-card p-8 rounded-2xl hover:transform hover:scale-105 transition-all border-l-4 border-orange-500">
+                    <div class="text-5xl mb-4">💥</div>
+                    <h3 class="text-2xl font-bold mb-3">Sobrescribir cambios</h3>
+                    <p class="text-gray-400">Trabajar en equipo era un caos. ¿Quién tiene la última versión? ¿Se perdieron mis cambios?</p>
+                </div>
+                <div class="glass-card p-8 rounded-2xl hover:transform hover:scale-105 transition-all border-l-4 border-yellow-500">
+                    <div class="text-5xl mb-4">🔍</div>
+                    <h3 class="text-2xl font-bold mb-3">Sin historial</h3>
+                    <p class="text-gray-400">¿Cuándo se rompió el código? ¿Quién hizo ese cambio? Imposible saberlo.</p>
+                </div>
+            </div>
+            <div class="mt-12 p-6 bg-red-500/10 border border-red-500/30 rounded-xl max-w-2xl text-center">
+                <p class="text-xl text-red-200">Necesitamos una forma de guardar "fotos" de nuestro código en el tiempo...</p>
+            </div>
+        </div>
+
+        <!-- SLIDE 3: Git vs GitHub -->
+        <div class="slide flex-col items-center justify-center max-w-6xl w-full" id="slide3">
+            <h2 class="text-5xl font-bold mb-4 text-center">Git <span class="text-gray-500">vs</span> GitHub</h2>
+            <p class="text-xl text-gray-400 mb-12 text-center">No son lo mismo, pero trabajan juntos</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 w-full">
+                <div class="glass-card p-10 rounded-3xl relative overflow-hidden group hover:border-teal-400/50 transition-all">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <i class="fas fa-code-branch text-9xl"></i>
+                    </div>
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-16 h-16 bg-orange-600 rounded-xl flex items-center justify-center text-3xl font-bold">Git</div>
+                        <div>
+                            <h3 class="text-3xl font-bold">Git</h3>
+                            <p class="text-orange-400">Software local</p>
+                        </div>
+                    </div>
+                    <ul class="space-y-4 text-lg">
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-orange-500 mt-1"></i>
+                            <span>Se instala en tu computadora</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-orange-500 mt-1"></i>
+                            <span>Control de versiones local</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-orange-500 mt-1"></i>
+                            <span>Línea de comandos (CLI)</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-orange-500 mt-1"></i>
+                            <span>Creado por Linus Torvalds (creador de Linux)</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="glass-card p-10 rounded-3xl relative overflow-hidden group hover:border-purple-400/50 transition-all border-purple-500/30">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <i class="fab fa-github text-9xl"></i>
+                    </div>
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-16 h-16 bg-purple-600 rounded-xl flex items-center justify-center text-3xl">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-3xl font-bold">GitHub</h3>
+                            <p class="text-purple-400">Plataforma web</p>
+                        </div>
+                    </div>
+                    <ul class="space-y-4 text-lg">
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-purple-500 mt-1"></i>
+                            <span>Servicio en la nube (internet)</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-purple-500 mt-1"></i>
+                            <span>Interfaz visual amigable</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-purple-500 mt-1"></i>
+                            <span>Colaboración en equipo</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-purple-500 mt-1"></i>
+                            <span>Comunidad global (Microsoft)</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="mt-8 text-center">
+                <p class="text-xl text-gray-300">
+                    <span class="text-orange-400 font-bold">Git</span> es el motor, 
+                    <span class="text-purple-400 font-bold">GitHub</span> es el garaje donde guardas y muestras tu auto
+                </p>
+            </div>
+        </div>
+
+        <!-- SLIDE 4: Conceptos Clave -->
+        <div class="slide flex-col items-center justify-center max-w-6xl w-full" id="slide4">
+            <h2 class="text-5xl font-bold mb-12 text-center">Conceptos Fundamentales</h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 w-full">
+                <div class="glass-card p-6 rounded-2xl text-center hover:bg-white/10 transition-all cursor-pointer group" onclick="showConcept('repo')">
+                    <div class="w-20 h-20 mx-auto mb-4 bg-blue-500/20 rounded-full flex items-center justify-center text-4xl group-hover:scale-110 transition-transform">
+                        📁
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Repositorio</h3>
+                    <p class="text-sm text-gray-400">La carpeta de tu proyecto</p>
+                    <div id="repo-detail" class="hidden mt-4 text-left text-sm bg-black/30 p-3 rounded-lg">
+                        Es como una carpeta mágica que guarda todo el historial de cambios, no solo los archivos actuales.
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl text-center hover:bg-white/10 transition-all cursor-pointer group" onclick="showConcept('commit')">
+                    <div class="w-20 h-20 mx-auto mb-4 bg-green-500/20 rounded-full flex items-center justify-center text-4xl group-hover:scale-110 transition-transform">
+                        💾
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Commit</h3>
+                    <p class="text-sm text-gray-400">Foto del código</p>
+                    <div id="commit-detail" class="hidden mt-4 text-left text-sm bg-black/30 p-3 rounded-lg">
+                        Un "punto de guardado" con mensaje descriptivo. Ej: "Agregué función de login".
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl text-center hover:bg-white/10 transition-all cursor-pointer group" onclick="showConcept('branch')">
+                    <div class="w-20 h-20 mx-auto mb-4 bg-purple-500/20 rounded-full flex items-center justify-center text-4xl group-hover:scale-110 transition-transform">
+                        🌿
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Branch</h3>
+                    <p class="text-sm text-gray-400">Línea temporal paralela</p>
+                    <div id="branch-detail" class="hidden mt-4 text-left text-sm bg-black/30 p-3 rounded-lg">
+                        Rama alternativa para experimentar sin romper el código principal (main).
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl text-center hover:bg-white/10 transition-all cursor-pointer group" onclick="showConcept('merge')">
+                    <div class="w-20 h-20 mx-auto mb-4 bg-yellow-500/20 rounded-full flex items-center justify-center text-4xl group-hover:scale-110 transition-transform">
+                        🔀
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Merge</h3>
+                    <p class="text-sm text-gray-400">Fusionar cambios</p>
+                    <div id="merge-detail" class="hidden mt-4 text-left text-sm bg-black/30 p-3 rounded-lg">
+                        Unir tu rama experimental de vuelta a la rama principal cuando todo funciona.
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12 w-full max-w-3xl">
+                <div class="code-block p-6">
+                    <div class="flex gap-2 mb-4">
+                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                        <span class="ml-4 text-sm text-gray-500 mono">terminal</span>
+                    </div>
+                    <div class="mono text-lg space-y-2">
+                        <p><span class="text-green-400">➜</span> <span class="text-blue-400">mi-proyecto</span> git:(<span class="text-purple-400">main</span>) git <span class="text-yellow-400">add</span> .</p>
+                        <p><span class="text-green-400">➜</span> <span class="text-blue-400">mi-proyecto</span> git:(<span class="text-purple-400">main</span>) git <span class="text-yellow-400">commit</span> -m <span class="text-orange-300">"Mi primer commit"</span></p>
+                        <p><span class="text-green-400">➜</span> <span class="text-blue-400">mi-proyecto</span> git:(<span class="text-purple-400">main</span>) git <span class="text-yellow-400">push</span> origin main</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 5: Flujo de Trabajo -->
+        <div class="slide flex-col items-center justify-center max-w-6xl w-full" id="slide5">
+            <h2 class="text-5xl font-bold mb-12 text-center">El Flujo de Trabajo</h2>
+            
+            <div class="flex flex-col md:flex-row items-center justify-between w-full gap-4 relative">
+                <!-- Línea conectora -->
+                <div class="hidden md:block absolute top-1/2 left-0 w-full h-1 bg-gradient-to-r from-gray-700 via-teal-500 to-gray-700 -z-10 transform -translate-y-1/2"></div>
+                
+                <div class="flex flex-col items-center gap-4 group">
+                    <div class="w-24 h-24 rounded-full bg-gray-800 border-4 border-gray-600 flex items-center justify-center text-3xl group-hover:border-teal-400 group-hover:scale-110 transition-all shadow-lg shadow-teal-500/20">
+                        <i class="fas fa-pen"></i>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="font-bold text-lg">1. Editar</h3>
+                        <p class="text-sm text-gray-400">Modificas archivos en tu editor</p>
+                    </div>
+                </div>
+
+                <div class="text-3xl text-gray-600 animate-pulse">→</div>
+
+                <div class="flex flex-col items-center gap-4 group">
+                    <div class="w-24 h-24 rounded-full bg-gray-800 border-4 border-gray-600 flex items-center justify-center text-3xl group-hover:border-yellow-400 group-hover:scale-110 transition-all shadow-lg shadow-yellow-500/20">
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="font-bold text-lg">2. Stage</h3>
+                        <p class="text-sm text-gray-400">git add (preparar)</p>
+                    </div>
+                </div>
+
+                <div class="text-3xl text-gray-600 animate-pulse">→</div>
+
+                <div class="flex flex-col items-center gap-4 group">
+                    <div class="w-24 h-24 rounded-full bg-gray-800 border-4 border-gray-600 flex items-center justify-center text-3xl group-hover:border-green-400 group-hover:scale-110 transition-all shadow-lg shadow-green-500/20">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="font-bold text-lg">3. Commit</h3>
+                        <p class="text-sm text-gray-400">git commit (fotografiar)</p>
+                    </div>
+                </div>
+
+                <div class="text-3xl text-gray-600 animate-pulse">→</div>
+
+                <div class="flex flex-col items-center gap-4 group">
+                    <div class="w-24 h-24 rounded-full bg-gray-800 border-4 border-gray-600 flex items-center justify-center text-3xl group-hover:border-purple-400 group-hover:scale-110 transition-all shadow-lg shadow-purple-500/20">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="font-bold text-lg">4. Push</h3>
+                        <p class="text-sm text-gray-400">git push (subir)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
+                <div class="glass-card p-6 rounded-xl border-l-4 border-teal-400">
+                    <h4 class="font-bold text-xl mb-2 flex items-center gap-2">
+                        <i class="fas fa-lightbulb text-yellow-400"></i>
+                        Analogía: Fotografía
+                    </h4>
+                    <p class="text-gray-300">
+                        <strong>Stage (add):</strong> Como preparar a tus amigos para la foto.<br>
+                        <strong>Commit:</strong> Como tomar la foto con un título.<br>
+                        <strong>Push:</strong> Como subirla a Instagram para que todos la vean.
+                    </p>
+                </div>
+                <div class="glass-card p-6 rounded-xl border-l-4 border-blue-400">
+                    <h4 class="font-bold text-xl mb-2 flex items-center gap-2">
+                        <i class="fas fa-gamepad text-purple-400"></i>
+                        Analogía: Videojuegos
+                    </h4>
+                    <p class="text-gray-300">
+                        <strong>Commit:</strong> Es un punto de guardado.<br>
+                        <strong>Push:</strong> Subir tu partida guardada a la nube.<br>
+                        <strong>Pull:</strong> Descargar la partida de un amigo para jugar juntos.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 6: Crear Cuenta -->
+        <div class="slide flex-col items-center justify-center max-w-5xl w-full" id="slide6">
+            <h2 class="text-5xl font-bold mb-8 text-center">Tu Primera Cuenta</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <div class="glass-card p-6 rounded-xl flex items-start gap-4 hover:bg-white/5 transition-all">
+                        <div class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center font-bold text-xl shrink-0">1</div>
+                        <div>
+                            <h3 class="font-bold text-xl mb-2">Ve a github.com</h3>
+                            <p class="text-gray-400">Haz clic en "Sign up" (Registrarse)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card p-6 rounded-xl flex items-start gap-4 hover:bg-white/5 transition-all">
+                        <div class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center font-bold text-xl shrink-0">2</div>
+                        <div>
+                            <h3 class="font-bold text-xl mb-2">Elige tu username</h3>
+                            <p class="text-gray-400">Será tu identidad profesional. Ej: @juan-perez-dev</p>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card p-6 rounded-xl flex items-start gap-4 hover:bg-white/5 transition-all">
+                        <div class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center font-bold text-xl shrink-0">3</div>
+                        <div>
+                            <h3 class="font-bold text-xl mb-2">Verifica tu email</h3>
+                            <p class="text-gray-400">Revisa tu correo y confirma la cuenta</p>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-xl flex items-start gap-4 hover:bg-white/5 transition-all border-2 border-teal-500/50 bg-teal-500/10">
+                        <div class="w-10 h-10 rounded-full bg-teal-500 flex items-center justify-center font-bold text-xl shrink-0">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-xl mb-2 text-teal-400">¡Beneficio Estudiante!</h3>
+                            <p class="text-gray-300">GitHub Education ofrece Pro GRATIS con correo .edu</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl border border-gray-700">
+                    <div class="flex items-center gap-3 mb-6 pb-6 border-b border-gray-700">
+                        <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full"></div>
+                        <div>
+                            <h3 class="font-bold text-xl">Tu Perfil</h3>
+                            <p class="text-gray-400 mono">@tu-usuario</p>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="h-4 bg-gray-700 rounded w-3/4"></div>
+                        <div class="h-4 bg-gray-700 rounded w-1/2"></div>
+                        <div class="flex gap-2 mt-6">
+                            <span class="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-sm">JavaScript</span>
+                            <span class="px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-sm">Python</span>
+                            <span class="px-3 py-1 bg-purple-500/20 text-purple-400 rounded-full text-sm">HTML</span>
+                        </div>
+                        <div class="mt-6 pt-6 border-t border-gray-700 grid grid-cols-3 gap-4 text-center">
+                            <div>
+                                <div class="text-2xl font-bold text-white">12</div>
+                                <div class="text-xs text-gray-500">Repos</div>
+                            </div>
+                            <div>
+                                <div class="text-2xl font-bold text-white">48</div>
+                                <div class="text-xs text-gray-500">Commits</div>
+                            </div>
+                            <div>
+                                <div class="text-2xl font-bold text-white">156</div>
+                                <div class="text-xs text-gray-500">Contribuciones</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 7: Primer Repositorio -->
+        <div class="slide flex-col items-center justify-center max-w-5xl w-full" id="slide7">
+            <h2 class="text-5xl font-bold mb-8 text-center">Creando tu Primer Repo</h2>
+            
+            <div class="w-full space-y-6">
+                <div class="glass-card p-8 rounded-2xl">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-gray-700 rounded-lg flex items-center justify-center text-2xl">📚</div>
+                            <div>
+                                <h3 class="text-2xl font-bold">mi-primer-proyecto</h3>
+                                <p class="text-gray-400">Público • Creado hoy</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-2">
+                            <span class="px-4 py-2 bg-gray-700 rounded-lg text-sm">⭐ Star</span>
+                            <span class="px-4 py-2 bg-gray-700 rounded-lg text-sm">🔀 Fork</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-900 rounded-xl p-6 mono text-sm space-y-2 border border-gray-700">
+                        <p class="text-gray-500"># Inicializar repositorio local</p>
+                        <p><span class="text-purple-400">git</span> <span class="text-blue-400">init</span></p>
+                        <br>
+                        <p class="text-gray-500"># Conectar con GitHub (remoto)</p>
+                        <p><span class="text-purple-400">git</span> <span class="text-blue-400">remote add</span> origin https://github.com/tu-usuario/mi-primer-proyecto.git</p>
+                        <br>
+                        <p class="text-gray-500"># Subir cambios</p>
+                        <p><span class="text-purple-400">git</span> <span class="text-blue-400">add</span> .</p>
+                        <p><span class="text-purple-400">git</span> <span class="text-blue-400">commit</span> -m <span class="text-green-400">"Primer commit"</span></p>
+                        <p><span class="text-purple-400">git</span> <span class="text-blue-400">push</span> -u origin main</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="glass-card p-6 rounded-xl text-center">
+                        <i class="fas fa-eye text-3xl text-teal-400 mb-3"></i>
+                        <h4 class="font-bold mb-2">Público</h4>
+                        <p class="text-sm text-gray-400">Todos pueden ver tu código. Ideal para portafolio.</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-xl text-center">
+                        <i class="fas fa-lock text-3xl text-red-400 mb-3"></i>
+                        <h4 class="font-bold mb-2">Privado</h4>
+                        <p class="text-sm text-gray-400">Solo tú y colaboradores invitados pueden verlo.</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-xl text-center">
+                        <i class="fas fa-book text-3xl text-blue-400 mb-3"></i>
+                        <h4 class="font-bold mb-2">README.md</h4>
+                        <p class="text-sm text-gray-400">Archivo que describe tu proyecto (como una carátula).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 8: Colaboración -->
+        <div class="slide flex-col items-center justify-center max-w-6xl w-full" id="slide8">
+            <h2 class="text-5xl font-bold mb-12 text-center">Trabajo en Equipo</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
+                <div class="space-y-6">
+                    <div class="glass-card p-6 rounded-xl border-l-4 border-pink-500">
+                        <h3 class="text-xl font-bold mb-3 flex items-center gap-2">
+                            <i class="fas fa-code-branch text-pink-400"></i>
+                            Fork
+                        </h3>
+                        <p class="text-gray-300">Copiar un repositorio ajeno a tu cuenta para modificarlo libremente.</p>
+                    </div>
+                    
+                    <div class="glass-card p-6 rounded-xl border-l-4 border-blue-500">
+                        <h3 class="text-xl font-bold mb-3 flex items-center gap-2">
+                            <i class="fas fa-code-pull-request text-blue-400"></i>
+                            Pull Request (PR)
+                        </h3>
+                        <p class="text-gray-300">Solicitud para que el dueño del repo original acepte tus mejoras.</p>
+                    </div>
+                    
+                    <div class="glass-card p-6 rounded-xl border-l-4 border-green-500">
+                        <h3 class="text-xl font-bold mb-3 flex items-center gap-2">
+                            <i class="fas fa-exclamation-circle text-green-400"></i>
+                            Issues
+                        </h3>
+                        <p class="text-gray-300">Sistema de tickets para reportar bugs o sugerir nuevas funciones.</p>
+                    </div>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-purple-600/20"></div>
+                    <div class="relative z-10">
+                        <h3 class="text-2xl font-bold mb-6">Flujo de Contribución</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-4">
+                                <div class="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center text-sm font-bold">1</div>
+                                <p class="text-gray-300">Haces <strong>Fork</strong> del proyecto que te gusta</p>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center text-sm font-bold">2</div>
+                                <p class="text-gray-300">Clonas a tu computadora (<span class="mono text-teal-400">git clone</span>)</p>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center text-sm font-bold">3</div>
+                                <p class="text-gray-300">Creas una rama para tus cambios</p>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center text-sm font-bold">4</div>
+                                <p class="text-gray-300">Haces commit y push a tu fork</p>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="w-8 h-8 rounded-full bg-teal-500 flex items-center justify-center text-sm font-bold">5</div>
+                                <p class="text-white font-semibold">Abres un Pull Request 🎉</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 9: GitHub para Estudiantes -->
+        <div class="slide flex-col items-center justify-center max-w-6xl w-full" id="slide9">
+            <h2 class="text-5xl font-bold mb-4 text-center">GitHub como <span class="gradient-text">Portafolio</span></h2>
+            <p class="text-xl text-gray-400 mb-12 text-center">Tu carta de presentación para universidades y empleos</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full mb-12">
+                <div class="glass-card p-8 rounded-2xl text-center group hover:border-teal-400/50 transition-all">
+                    <div class="text-5xl mb-4 group-hover:scale-110 transition-transform">🎓</div>
+                    <h3 class="text-xl font-bold mb-3">Universidades</h3>
+                    <p class="text-gray-400">Demuestra tu pasión por la programación desde temprano. Proyectos personales cuentan más que las calificaciones.</p>
+                </div>
+                
+                <div class="glass-card p-8 rounded-2xl text-center group hover:border-blue-400/50 transition-all">
+                    <div class="text-5xl mb-4 group-hover:scale-110 transition-transform">💼</div>
+                    <h3 class="text-xl font-bold mb-3">Primer Empleo</h3>
+                    <p class="text-gray-400">Las empresas revisan tu GitHub. Muestra código limpio, documentado y proyectos reales.</p>
+                </div>
+                
+                <div class="glass-card p-8 rounded-2xl text-center group hover:border-purple-400/50 transition-all">
+                    <div class="text-5xl mb-4 group-hover:scale-110 transition-transform">🚀</div>
+                    <h3 class="text-xl font-bold mb-3">Open Source</h3>
+                    <p class="text-gray-400">Contribuye a proyectos grandes (React, Python, VS Code). Networking global desde tu casa.</p>
+                </div>
+            </div>
+
+            <div class="glass-card p-8 rounded-2xl w-full bg-gradient-to-r from-teal-500/10 to-blue-500/10 border-teal-500/30">
+                <h3 class="text-2xl font-bold mb-6 text-center">Consejos para Estudiantes</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <ul class="space-y-3">
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-check-circle text-teal-400"></i>
+                            <span>Mantén tu perfil actualizado (foto, bio, ubicación)</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-check-circle text-teal-400"></i>
+                            <span>Fija (pin) tus mejores 6 proyectos</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-check-circle text-teal-400"></i>
+                            <span>Escribe READMEs descriptivos con imágenes</span>
+                        </li>
+                    </ul>
+                    <ul class="space-y-3">
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-check-circle text-teal-400"></i>
+                            <span>Commitea regularmente (racha verde)</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-check-circle text-teal-400"></i>
+                            <span>Participa en Hacktoberfest (octubre)</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-check-circle text-teal-400"></i>
+                            <span>Usa GitHub Pages para tu web personal</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 10: Recursos -->
+        <div class="slide flex-col items-center justify-center max-w-5xl w-full" id="slide10">
+            <h2 class="text-5xl font-bold mb-8 text-center">¡Manos a la obra!</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full mb-12">
+                <div class="glass-card p-8 rounded-2xl hover:bg-white/5 transition-all">
+                    <h3 class="text-2xl font-bold mb-6 flex items-center gap-3">
+                        <i class="fas fa-rocket text-teal-400"></i>
+                        Primeros Pasos
+                    </h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3 p-3 rounded-lg bg-white/5 hover:bg-white/10 cursor-pointer transition-all" onclick="window.open('https://github.com/new', '_blank')">
+                            <i class="fas fa-plus-circle text-green-400 text-xl"></i>
+                            <div>
+                                <div class="font-semibold">Crea tu primera cuenta</div>
+                                <div class="text-sm text-gray-400">github.com/signup</div>
+                            </div>
+                        </li>
+                        <li class="flex items-center gap-3 p-3 rounded-lg bg-white/5 hover:bg-white/10 cursor-pointer transition-all" onclick="window.open('https://desktop.github.com/', '_blank')">
+                            <i class="fas fa-desktop text-purple-400 text-xl"></i>
+                            <div>
+                                <div class="font-semibold">Descarga GitHub Desktop</div>
+                                <div class="text-sm text-gray-400">Interfaz gráfica fácil (sin comandos)</div>
+                            </div>
+                        </li>
+                        <li class="flex items-center gap-3 p-3 rounded-lg bg-white/5 hover:bg-white/10 cursor-pointer transition-all" onclick="window.open('https://education.github.com/', '_blank')">
+                            <i class="fas fa-graduation-cap text-yellow-400 text-xl"></i>
+                            <div>
+                                <div class="font-semibold">Solicita GitHub Student Pack</div>
+                                <div class="text-sm text-gray-400">Herramientas profesionales gratis</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl hover:bg-white/5 transition-all">
+                    <h3 class="text-2xl font-bold mb-6 flex items-center gap-3">
+                        <i class="fas fa-book-open text-blue-400"></i>
+                        Aprende Más
+                    </h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3 p-3 rounded-lg bg-white/5 hover:bg-white/10 cursor-pointer transition-all" onclick="window.open('https://docs.github.com/es', '_blank')">
+                            <i class="fas fa-file-alt text-gray-400 text-xl"></i>
+                            <div>
+                                <div class="font-semibold">Documentación Oficial</div>
+                                <div class="text-sm text-gray-400">docs.github.com (en español)</div>
+                            </div>
+                        </li>
+                        <li class="flex items-center gap-3 p-3 rounded-lg bg-white/5 hover:bg-white/10 cursor-pointer transition-all">
+                            <i class="fas fa-youtube text-red-400 text-xl"></i>
+                            <div>
+                                <div class="font-semibold">GitHub en YouTube</div>
+                                <div class="text-sm text-gray-400">Tutoriales oficiales gratuitos</div>
+                            </div>
+                        </li>
+                        <li class="flex items-center gap-3 p-3 rounded-lg bg-white/5 hover:bg-white/10 cursor-pointer transition-all">
+                            <i class="fas fa-trophy text-yellow-400 text-xl"></i>
+                            <div>
+                                <div class="font-semibold">GitHub Skills</div>
+                                <div class="text-sm text-gray-400">Cursos interactivos dentro de GitHub</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <div class="inline-block p-8 rounded-3xl bg-gradient-to-r from-teal-500 to-blue-600 transform hover:scale-105 transition-all cursor-pointer shadow-2xl shadow-teal-500/25" onclick="location.reload()">
+                    <i class="fas fa-redo text-3xl mb-2"></i>
+                    <div class="text-xl font-bold">Repetir Presentación</div>
+                </div>
+                <p class="mt-6 text-gray-500">¡Gracias! Ahora ve y construye algo increíble 🚀</p>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Indicadores de slide -->
+    <div class="fixed bottom-8 left-1/2 transform -translate-x-1/2 flex gap-2 z-40">
+        <button onclick="goToSlide(1)" class="w-3 h-3 rounded-full bg-white/30 hover:bg-white transition-all slide-dot active" data-slide="1"></button>
+        <button onclick="goToSlide(2)" class="w-3 h-3 rounded-full bg-white/30 hover:bg-white transition-all slide-dot" data-slide="2"></button>
+        <button onclick="goToSlide(3)" class="w-3 h-3 rounded-full bg-white/30 hover:bg-white transition-all slide-dot" data-slide="3"></button>
+        <button onclick="goToSlide(4)" class="w-3 h-3 rounded-full bg-white/30 hover:bg-white transition-all slide-dot" data-slide="4"></button>
+        <button onclick="goToSlide(5)" class="w-3 h-3 rounded-full bg-white/30 hover:bg-white transition-all slide-dot" data-slide="5"></button>
+        <button onclick="goToSlide(6)" class="w-3 h-3 rounded-full bg-white/30 hover:bg-white transition-all slide-dot" data-slide="6"></button>
+        <button onclick="goToSlide(7)" class="w-3 h-3 rounded-full bg-white/30 hover:bg-white transition-all slide-dot" data-slide="7"></button>
+        <button onclick="goToSlide(8)" class="w-3 h-3 rounded-full bg-white/30 hover:bg-white transition-all slide-dot" data-slide="8"></button>
+        <button onclick="goToSlide(9)" class="w-3 h-3 rounded-full bg-white/30 hover:bg-white transition-all slide-dot" data-slide="9"></button>
+        <button onclick="goToSlide(10)" class="w-3 h-3 rounded-full bg-white/30 hover:bg-white transition-all slide-dot" data-slide="10"></button>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 10;
+
+        function updateSlide() {
+            // Ocultar todos los slides
+            document.querySelectorAll('.slide').forEach(slide => {
+                slide.classList.remove('active');
+            });
+            
+            // Mostrar slide actual
+            document.getElementById(`slide${currentSlide}`).classList.add('active');
+            
+            // Actualizar barra de progreso
+            const progress = (currentSlide / totalSlides) * 100;
+            document.getElementById('progressBar').style.width = `${progress}%`;
+            
+            // Actualizar contador
+            document.getElementById('slideCounter').textContent = `${currentSlide} / ${totalSlides}`;
+            
+            // Actualizar dots
+            document.querySelectorAll('.slide-dot').forEach((dot, index) => {
+                if (index + 1 === currentSlide) {
+                    dot.classList.add('bg-white', 'scale-125');
+                    dot.classList.remove('bg-white/30');
+                } else {
+                    dot.classList.remove('bg-white', 'scale-125');
+                    dot.classList.add('bg-white/30');
+                }
+            });
+        }
+
+        function changeSlide(direction) {
+            currentSlide += direction;
+            if (currentSlide < 1) currentSlide = 1;
+            if (currentSlide > totalSlides) currentSlide = totalSlides;
+            updateSlide();
+        }
+
+        function goToSlide(n) {
+            currentSlide = n;
+            updateSlide();
+        }
+
+        function showConcept(concept) {
+            const detail = document.getElementById(`${concept}-detail`);
+            detail.classList.toggle('hidden');
+        }
+
+        // Navegación con teclado
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                changeSlide(1);
+            } else if (e.key === 'ArrowLeft') {
+                changeSlide(-1);
+            }
+        });
+
+        // Efecto Matrix en el fondo
+        const canvas = document.getElementById('matrixCanvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const matrix = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}";
+        const matrixArray = matrix.split("");
+
+        const fontSize = 10;
+        const columns = canvas.width / fontSize;
+        const drops = [];
+
+        for (let x = 0; x < columns; x++) {
+            drops[x] = 1;
+        }
+
+        function drawMatrix() {
+            ctx.fillStyle = "rgba(0, 0, 0, 0.04)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = "#0F0";
+            ctx.font = fontSize + "px monospace";
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = matrixArray[Math.floor(Math.random() * matrixArray.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(drawMatrix, 35);
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // Inicializar
+        updateSlide();
+    </script>
+</body>
+</html>

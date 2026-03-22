@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enrutados Venezuela - Transporte Digital</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- Canvas para partículas -->
+    <canvas id="particles-canvas" class="particles-layer"></canvas>
+
+    <!-- Navegación flotante -->
+    <nav class="floating-nav" id="navbar">
+        <div class="nav-content">
+            <div class="logo">
+                <i data-lucide="bus"></i>
+                <span>ENRUTADOS</span>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="#problema">Problema</a>
+                <a href="#como-funciona">Cómo Funciona</a>
+                <a href="#solucion">Solución</a>
+                <a href="#tecnologia">Tecnología</a>
+                <a href="#faq">FAQ</a>
+            </div>
+            <div class="menu-toggle" id="menuToggle" aria-label="Menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="parallax-bg" data-speed="0.5"></div>
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+
+        <div class="container">
+            <div class="hero-badge" data-reveal="fade-down">
+                <span class="pulse-dot"></span>
+                PROYECTO FERIA ESTUDIANTIL
+            </div>
+
+            <h1 class="hero-title" data-reveal="fade-up">
+                <span class="text-white">Enrutados</span>
+                <span class="text-gradient cyan">Venezuela</span>
+            </h1>
+
+            <div class="connection-visual" data-reveal="zoom-in">
+                <div class="node passenger">
+                    <div class="icon-box">
+                        <i data-lucide="users"></i>
+                    </div>
+                    <span class="label">Pasajero</span>
+                </div>
+
+                <div class="connection-line">
+                    <div class="data-packet"></div>
+                    <div class="data-packet delay-1"></div>
+                    <div class="data-packet delay-2"></div>
+                </div>
+
+                <div class="node bus-node">
+                    <div class="icon-box main">
+                        <i data-lucide="bus"></i>
+                        <div class="signal-waves"></div>
+                    </div>
+                    <span class="label">Transporte</span>
+                </div>
+
+                <div class="connection-line">
+                    <div class="data-packet"></div>
+                    <div class="data-packet delay-1"></div>
+                </div>
+
+                <div class="node system">
+                    <div class="icon-box">
+                        <i data-lucide="wifi"></i>
+                    </div>
+                    <span class="label">Sistema</span>
+                </div>
+            </div>
+
+            <div class="hero-card" data-reveal="fade-up" data-delay="200">
+                <div class="card-accent"></div>
+                <p class="typewriter-text" id="hero-text"></p>
+                <div class="meta-info">
+                    <span>Solución Tecnológica Integral</span>
+                    <span class="separator">•</span>
+                    <span class="year">2026</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problema y Solución -->
+    <section class="problem-solution" id="problema">
+        <div class="container">
+            <header class="section-header" data-reveal="fade-up">
+                <span class="section-tag">Análisis Situacional</span>
+                <h2>El Problema y <span class="text-gradient cyan">La Solución</span></h2>
+            </header>
+
+            <div class="problems-grid">
+                <article class="problem-card" data-reveal="slide-right">
+                    <div class="icon-wrap orange">
+                        <i data-lucide="help-circle"></i>
+                        <div class="icon-bg"></div>
+                    </div>
+                    <h3>¿Por qué el sistema actual es un problema para el pasajero?</h3>
+                    <p><strong>Dependencia del efectivo</strong>, <strong>falta de cambio</strong>,
+                        <strong>inseguridad</strong> y <strong>lentitud</strong> en el abordaje.
+                    </p>
+                </article>
+
+                <article class="problem-card" data-reveal="slide-up" data-delay="100">
+                    <div class="icon-wrap yellow">
+                        <i data-lucide="lightbulb"></i>
+                        <div class="icon-bg"></div>
+                    </div>
+                    <h3>¿Qué pasaría si el pago fuese digital?</h3>
+                    <p>Se <strong>agiliza el proceso</strong>, se elimina el <strong>riesgo del manejo de
+                            efectivo</strong> y se crea un <strong>registro transparente</strong>.</p>
+                </article>
+
+                <article class="problem-card" data-reveal="slide-left" data-delay="200">
+                    <div class="icon-wrap blue">
+                        <i data-lucide="bar-chart-3"></i>
+                        <div class="icon-bg"></div>
+                    </div>
+                    <h3>¿Qué información obtendríamos con una App del sistema?</h3>
+                    <p><strong>Datos reales</strong> sobre afluencia de pasajeros, <strong>rutas más usadas</strong> y
+                        <strong>recaudación diaria</strong> por unidad.
+                    </p>
+                </article>
+            </div>
+
+            <div class="solution-banner" data-reveal="scale-up">
+                <div class="solution-glow"></div>
+                <div class="content">
+                    <div class="check-icon">
+                        <i data-lucide="check"></i>
+                    </div>
+                    <div class="text">
+                        <h3>¡LA SOLUCIÓN!</h3>
+                        <p><strong class="highlight-orange">Enrutados Venezuela</strong> resuelve todo eso con un
+                            ecosistema de <strong class="highlight-cyan">tres aplicaciones móviles</strong> conectadas
+                            entre sí en tiempo real.</p>
+                    </div>
+                    <div class="app-icons">
+                        <div class="app-icon cyan"><i data-lucide="smartphone"></i></div>
+                        <div class="app-icon orange"><i data-lucide="tablet"></i></div>
+                        <div class="app-icon green"><i data-lucide="monitor"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Simple: Cómo funciona para todos -->
+    <section class="how-it-works" id="como-funciona">
+        <div class="container">
+            <header class="section-header center" data-reveal="fade-up">
+                <span class="section-tag">En 3 pasos simples</span>
+                <h2>¿Cómo <span class="text-gradient cyan">funciona?</span></h2>
+                <p class="section-subtitle">Olvídate del efectivo. Todo con tu teléfono.</p>
+            </header>
+
+            <div class="steps-simple">
+                <div class="step-simple" data-reveal="fade-up" data-delay="0">
+                    <div class="step-circle">
+                        <span class="step-num">1</span>
+                    </div>
+                    <div class="step-icon">
+                        <i data-lucide="smartphone"></i>
+                    </div>
+                    <h3>Descarga y registra</h3>
+                    <p>Bajas la app, creas tu cuenta y listo. Sin trámites largos.</p>
+                    <div class="step-arrow">
+                        <i data-lucide="arrow-right"></i>
+                    </div>
+                </div>
+
+                <div class="step-simple" data-reveal="fade-up" data-delay="100">
+                    <div class="step-circle">
+                        <span class="step-num">2</span>
+                    </div>
+                    <div class="step-icon">
+                        <i data-lucide="wallet"></i>
+                    </div>
+                    <h3>Recarga tu saldo</h3>
+                    <p>Por Pago Móvil o efectivo. Tu saldo se guarda en la app.</p>
+                    <div class="step-arrow">
+                        <i data-lucide="arrow-right"></i>
+                    </div>
+                </div>
+
+                <div class="step-simple" data-reveal="fade-up" data-delay="200">
+                    <div class="step-circle">
+                        <span class="step-num">3</span>
+                    </div>
+                    <div class="step-icon">
+                        <i data-lucide="qr-code"></i>
+                    </div>
+                    <h3>Listo para viajar</h3>
+                    <p>Generas tu código QR, el conductor lo escanea y listo.</p>
+                </div>
+            </div>
+
+            <!-- Ejemplo concreto -->
+            <div class="demo-box" data-reveal="fade-up" data-delay="300">
+                <div class="demo-header">
+                    <i data-lucide="play-circle"></i>
+                    <span>Ejemplo: María usa Enrutados</span>
+                </div>
+                <div class="demo-content">
+                    <div class="demo-step">
+                        <div class="demo-icon">📱</div>
+                        <p><strong>María</strong> abre la app y tiene <span class="highlight">5 viajes</span>
+                            disponibles</p>
+                    </div>
+                    <div class="demo-arrow">→</div>
+                    <div class="demo-step">
+                        <div class="demo-icon">🚐</div>
+                        <p>Llega el bus, muestra su <span class="highlight">código QR</span></p>
+                    </div>
+                    <div class="demo-arrow">→</div>
+                    <div class="demo-step">
+                        <div class="demo-icon">✅</div>
+                        <p>El conductor escanea, se descuenta <span class="highlight">1 viaje</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Beneficios clave -->
+            <div class="benefits-simple">
+                <div class="benefit-simple" data-reveal="fade-up" data-delay="400">
+                    <i data-lucide="zap"></i>
+                    <h4>Rápido</h4>
+                    <p>En 3 segundos estás dentro del bus</p>
+                </div>
+                <div class="benefit-simple" data-reveal="fade-up" data-delay="500">
+                    <i data-lucide="shield-check"></i>
+                    <h4>Seguro</h4>
+                    <p>Sin efectivo que perder o robar</p>
+                </div>
+                <div class="benefit-simple" data-reveal="fade-up" data-delay="600">
+                    <i data-lucide="piggy-bank"></i>
+                    <h4>Económico</h4>
+                    <p>Controlas exactamente tu gasto</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Apps Showcase -->
+    <section class="apps-showcase" id="solucion">
+        <!-- App Pasajero -->
+        <div class="app-section passenger-app">
+            <div class="container">
+                <div class="app-layout">
+                    <div class="phone-container" data-reveal="fade-right">
+                        <div class="phone-mockup">
+                            <div class="phone-notch"></div>
+                            <div class="phone-screen">
+                                <div class="app-header cyan">
+                                    <div class="app-icon-large">
+                                        <i data-lucide="bus"></i>
+                                    </div>
+                                    <h4>Enrutados Ven</h4>
+                                    <p>Bienvenido de nuevo</p>
+                                </div>
+                                <div class="app-form">
+                                    <div class="input-field">
+                                        <label>Correo electrónico</label>
+                                        <input type="text" placeholder="usuario@email.com">
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Contraseña</label>
+                                        <input type="password" placeholder="••••••••">
+                                    </div>
+                                    <button class="btn-primary">ENTRAR</button>
+                                    <div class="links">
+                                        <a href="#">¿No tienes cuenta? Regístrate aquí</a>
+                                        <a href="#">¿Olvidaste tu contraseña?</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="phone-shadow"></div>
+                    </div>
+
+                    <div class="app-details" data-reveal="fade-left">
+                        <div class="app-tag">APP #1</div>
+                        <h2>App del <span class="text-gradient cyan">Pasajero</span></h2>
+                        <p class="subtitle">"Mi billetera de transporte"</p>
+
+                        <ul class="feature-list">
+                            <li class="feature-item">
+                                <div class="feature-icon cyan">
+                                    <i data-lucide="wallet"></i>
+                                </div>
+                                <div>
+                                    <h4>Billetera Digital</h4>
+                                    <p>Descarga la app, crea tu cuenta y tiene una billetera con saldo en Bolívares.</p>
+                                </div>
+                            </li>
+                            <li class="feature-item">
+                                <div class="feature-icon cyan">
+                                    <i data-lucide="eye"></i>
+                                </div>
+                                <div>
+                                    <h4>Ver Saldo</h4>
+                                    <p>Saldo disponible visible en tiempo real.</p>
+                                </div>
+                            </li>
+                            <li class="feature-item">
+                                <div class="feature-icon cyan">
+                                    <i data-lucide="plus-circle"></i>
+                                </div>
+                                <div>
+                                    <h4>Recargar</h4>
+                                    <p>Por Pago Móvil o efectivo directo en taquilla.</p>
+                                </div>
+                            </li>
+                            <li class="feature-item">
+                                <div class="feature-icon cyan">
+                                    <i data-lucide="qr-code"></i>
+                                </div>
+                                <div>
+                                    <h4>Generar QR</h4>
+                                    <p>Código único generado instantáneamente como tickete de viaje.</p>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <div class="alert-box orange">
+                            <i data-lucide="zap"></i>
+                            <p><strong>¿Sabías qué?</strong> El código QR cambia cada vez que el pasajero lo renueva.
+                                <span>Nadie puede copiarlo ni hacer capturas de pantalla válidas.</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- App Conductor -->
+        <div class="app-section driver-app">
+            <div class="container">
+                <div class="app-layout reverse">
+                    <div class="app-details" data-reveal="fade-right">
+                        <div class="app-tag orange">APP #2</div>
+                        <h2>App del <span class="text-gradient orange">Conductor</span></h2>
+                        <p class="subtitle">"Mi herramienta de trabajo"</p>
+
+                        <div class="feature-grid">
+                            <div class="feature-card">
+                                <div class="icon"><i data-lucide="id-card"></i></div>
+                                <h4>Perfil y Placa</h4>
+                                <p>Perfil verificado y placa registrada</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="icon"><i data-lucide="map-pin"></i></div>
+                                <h4>Activar Ruta</h4>
+                                <p>Ubicación en tiempo real para pasajeros</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="icon"><i data-lucide="scan-line"></i></div>
+                                <h4>Escanear QR</h4>
+                                <p>Lectura de ticketes digitales</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="icon"><i data-lucide="clipboard-list"></i></div>
+                                <h4>Viajes del Día</h4>
+                                <p>Registro completo de pasajeros</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="icon"><i data-lucide="coins"></i></div>
+                                <h4>Dinero Generado</h4>
+                                <p>Visualización clara de recaudación</p>
+                            </div>
+                        </div>
+
+                        <div class="alert-box cyan">
+                            <i data-lucide="zap"></i>
+                            <p><strong>¡Automático!</strong> Cuando el conductor escanea el QR, el sistema descuenta
+                                automáticamente el pasaje de la billetera del pasajero. Al finalizarla, el sistema
+                                genera automáticamente un reporte con el total de pasajeros y la recaudación del día.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="phone-container" data-reveal="fade-left">
+                        <div class="phone-mockup">
+                            <div class="phone-notch"></div>
+                            <div class="phone-screen">
+                                <div class="app-header orange">
+                                    <div class="app-icon-large">
+                                        <i data-lucide="bus"></i>
+                                    </div>
+                                    <h4>Conductor</h4>
+                                    <p>¡Bienvenido! El control está en tus manos.</p>
+                                </div>
+                                <div class="app-form">
+                                    <div class="input-field">
+                                        <label>Correo Electrónico</label>
+                                        <input type="text" placeholder="conductor@email.com">
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Contraseña</label>
+                                        <input type="password" placeholder="••••••••">
+                                    </div>
+                                    <button class="btn-primary orange">INICIAR SESIÓN</button>
+                                    <div class="links">
+                                        <a href="#">¿Olvidaste tu contraseña?</a>
+                                        <a href="#" class="highlight">Registrar nueva unidad</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="phone-shadow"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- App Administrador -->
+        <div class="app-section admin-app">
+            <div class="container">
+                <div class="app-layout">
+                    <div class="phone-container" data-reveal="fade-right">
+                        <div class="phone-mockup">
+                            <div class="phone-notch"></div>
+                            <div class="phone-screen">
+                                <div class="app-header purple">
+                                    <div class="app-icon-large">
+                                        <i data-lucide="shield"></i>
+                                    </div>
+                                    <h4>Admin</h4>
+                                    <p>Panel de Control</p>
+                                </div>
+                                <div class="app-form">
+                                    <div class="input-field">
+                                        <label>Usuario Admin</label>
+                                        <input type="text" placeholder="admin@enrutados.ve">
+                                    </div>
+                                    <div class="input-field">
+                                        <label>Contraseña</label>
+                                        <input type="password" placeholder="••••••••">
+                                    </div>
+                                    <button class="btn-primary purple">ACCEDER</button>
+                                    <div class="links">
+                                        <a href="#">Panel de estadísticas</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="phone-shadow"></div>
+                    </div>
+
+                    <div class="app-details" data-reveal="fade-left">
+                        <div class="app-tag">APP #3</div>
+                        <h2>App del <span class="text-gradient purple">Administrador</span></h2>
+                        <p class="subtitle">"El tablero de control"</p>
+
+                        <ul class="feature-list">
+                            <li class="feature-item">
+                                <div class="feature-icon purple">
+                                    <i data-lucide="map"></i>
+                                </div>
+                                <div>
+                                    <h4>Mapa en Vivo</h4>
+                                    <p>Ver todos los conductores activos y sus ubicaciones en tiempo real.</p>
+                                </div>
+                            </li>
+                            <li class="feature-item">
+                                <div class="feature-icon purple">
+                                    <i data-lucide="wallet"></i>
+                                </div>
+                                <div>
+                                    <h4>Aprobar Recargas</h4>
+                                    <p>Revisar y aprobar o rechazar solicitudes de recarga de pasajeros.</p>
+                                </div>
+                            </li>
+                            <li class="feature-item">
+                                <div class="feature-icon purple">
+                                    <i data-lucide="bar-chart-3"></i>
+                                </div>
+                                <div>
+                                    <h4>Estadísticas</h4>
+                                    <p>Ver reportes generales de la asociación: viajes, ingresos, conductores.</p>
+                                </div>
+                            </li>
+                            <li class="feature-item">
+                                <div class="feature-icon purple">
+                                    <i data-lucide="users"></i>
+                                </div>
+                                <div>
+                                    <h4>Gestionar Conductores</h4>
+                                    <p>Administrar conductores registrados y sus permisos.</p>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <div class="alert-box cyan">
+                            <i data-lucide="zap"></i>
+                            <p><strong>¡Tiempo Real!</strong> El mapa se actualiza constantemente — si el conductor se
+                                mueve, el punto en el mapa se mueve instantáneamente.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="timeline-section">
+        <div class="container">
+            <header class="section-header center" data-reveal="fade-up">
+                <span class="section-tag">Proceso Operativo</span>
+                <h2>Flujo del sistema <span class="text-gradient cyan">paso a paso</span></h2>
+            </header>
+
+            <div class="timeline" id="timeline">
+                <div class="timeline-line">
+                    <div class="progress-line" id="progress-line"></div>
+                </div>
+
+                <div class="timeline-steps">
+                    <div class="step" data-step="1">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <i data-lucide="smartphone"></i>
+                            <h4>RECARGA</h4>
+                            <p>Pago Móvil desde la App Pasajero</p>
+                        </div>
+                    </div>
+                    <div class="step" data-step="2">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <i data-lucide="check-circle"></i>
+                            <h4>APROBACIÓN</h4>
+                            <p>Admin verifica la transacción</p>
+                        </div>
+                    </div>
+                    <div class="step" data-step="3">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <i data-lucide="database"></i>
+                            <h4>ACREDITADO</h4>
+                            <p>Saldo listo en el servidor</p>
+                        </div>
+                    </div>
+                    <div class="step" data-step="4">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <i data-lucide="qr-code"></i>
+                            <h4>GENERAR QR</h4>
+                            <p>Tickete digital único creado</p>
+                        </div>
+                    </div>
+                    <div class="step" data-step="5">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <i data-lucide="scan"></i>
+                            <h4>ESCANEAR</h4>
+                            <p>Conductor lee el código QR</p>
+                        </div>
+                    </div>
+                    <div class="step" data-step="6">
+                        <div class="step-number check">
+                            <i data-lucide="check"></i>
+                        </div>
+                        <div class="step-content">
+                            <i data-lucide="ticket"></i>
+                            <h4 class="success">¡LISTO!</h4>
+                            <p>Pasaje validado y descontado</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tecnología -->
+    <section class="tech-section" id="tecnologia">
+        <div class="container">
+            <header class="section-header center" data-reveal="fade-up">
+                <span class="section-tag purple">Infraestructura</span>
+                <h2>La tecnología <span class="text-gradient purple">detrás</span></h2>
+                <p class="section-subtitle">Explicado de forma sencilla</p>
+            </header>
+
+            <div class="tech-grid">
+                <div class="tech-card" data-reveal="fade-up">
+                    <div class="tech-icon blue"><i data-lucide="smartphone"></i></div>
+                    <h3>React Native</h3>
+                    <span class="tech-tag">Desarrollo Móvil</span>
+                    <p>Lenguaje de programación moderno utilizado para crear aplicaciones móviles nativas.</p>
+                    <div class="tech-footer">
+                        <i data-lucide="code"></i>
+                        <span>Construye las 3 apps del sistema</span>
+                    </div>
+                </div>
+
+                <div class="tech-card" data-reveal="fade-up" data-delay="100">
+                    <div class="tech-icon green"><i data-lucide="database"></i></div>
+                    <h3>Supabase</h3>
+                    <span class="tech-tag">Base de Datos Cloud</span>
+                    <p>Plataforma de backend que gestiona toda la información en la nube de forma segura.</p>
+                    <div class="tech-footer">
+                        <i data-lucide="hard-drive"></i>
+                        <span>Guarda usuarios, saldos y viajes</span>
+                    </div>
+                </div>
+
+                <div class="tech-card" data-reveal="fade-up" data-delay="200">
+                    <div class="tech-icon purple"><i data-lucide="server"></i></div>
+                    <h3>Render</h3>
+                    <span class="tech-tag">Servidor Web</span>
+                    <p>Servicio de alojamiento web donde vive el "cerebro" lógico del sistema.</p>
+                    <div class="tech-footer">
+                        <i data-lucide="cpu"></i>
+                        <span>Procesa pagos y valida ticketes</span>
+                    </div>
+                </div>
+
+                <div class="tech-card" data-reveal="fade-up">
+                    <div class="tech-icon yellow"><i data-lucide="flame"></i></div>
+                    <h3>Firebase</h3>
+                    <span class="tech-tag">Google Cloud</span>
+                    <p>Conjunto de herramientas de Google para mejorar la experiencia de usuario.</p>
+                    <div class="tech-footer">
+                        <i data-lucide="bell"></i>
+                        <span>Envía notificaciones push</span>
+                    </div>
+                </div>
+
+                <div class="tech-card" data-reveal="fade-up" data-delay="100">
+                    <div class="tech-icon emerald"><i data-lucide="map"></i></div>
+                    <h3>Leaflet + MapTiler</h3>
+                    <span class="tech-tag">Cartografía</span>
+                    <p>Biblioteca de mapas interactivos de código abierto y ligeros.</p>
+                    <div class="tech-footer">
+                        <i data-lucide="navigation"></i>
+                        <span>Muestra autobuses en vivo</span>
+                    </div>
+                </div>
+
+                <div class="tech-card" data-reveal="fade-up" data-delay="200">
+                    <div class="tech-icon cyan"><i data-lucide="qr-code"></i></div>
+                    <h3>Código QR</h3>
+                    <span class="tech-tag">Token Digital</span>
+                    <p>Estándar de códigos de barras bidimensionales para almacenar datos.</p>
+                    <div class="tech-footer">
+                        <i data-lucide="ticket"></i>
+                        <span>El "tickete" digital escaneable</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seguridad -->
+    <section class="security-section">
+        <div class="container">
+            <header class="section-header center" data-reveal="fade-up">
+                <div class="shield-icon">
+                    <i data-lucide="shield"></i>
+                </div>
+                <h2>¿Cómo se protege <span class="text-gradient emerald">el dinero?</span></h2>
+                <p class="section-subtitle">Medidas de seguridad del sistema</p>
+            </header>
+
+            <div class="security-grid">
+                <div class="security-card" data-reveal="fade-up">
+                    <div class="security-icon emerald">
+                        <i data-lucide="ticket-x"></i>
+                    </div>
+                    <h3>QR Único y de Un Solo Uso</h3>
+                    <p>Después de ser escaneado, el tickete queda inválido permanentemente. No se puede reusar ni
+                        copiar.</p>
+                    <div class="badge emerald">
+                        <i data-lucide="check-circle"></i>
+                        Anti-Fraude
+                    </div>
+                </div>
+
+                <div class="security-card" data-reveal="fade-up" data-delay="100">
+                    <div class="security-icon blue">
+                        <i data-lucide="user-check"></i>
+                    </div>
+                    <h3>Solo Conductores Aprobados</h3>
+                    <p>El sistema verifica digitalmente que el conductor esté activo y autorizado antes de validar
+                        cualquier cobro.</p>
+                    <div class="badge blue">
+                        <i data-lucide="verified"></i>
+                        Verificado
+                    </div>
+                </div>
+
+                <div class="security-card" data-reveal="fade-up" data-delay="200">
+                    <div class="security-icon purple">
+                        <i data-lucide="server"></i>
+                    </div>
+                    <h3>Saldo en el Servidor</h3>
+                    <p>El dinero nunca "viaja" en el teléfono — el saldo real siempre vive protegido en la base de datos
+                        segura.</p>
+                    <div class="badge purple">
+                        <i data-lucide="cloud"></i>
+                        Cloud Safe
+                    </div>
+                </div>
+
+                <div class="security-card" data-reveal="fade-up" data-delay="300">
+                    <div class="security-icon cyan">
+                        <i data-lucide="key"></i>
+                    </div>
+                    <h3>Tokens de Seguridad JWT</h3>
+                    <p>Las contraseñas nunca se guardan — usamos tokens temporales cifrados que expiran automáticamente.
+                    </p>
+                    <div class="badge cyan">
+                        <i data-lucide="lock"></i>
+                        Cifrado
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conectividad -->
+    <section class="connectivity-section">
+        <div class="container">
+            <header class="section-header center" data-reveal="fade-up">
+                <span class="section-tag orange"><i data-lucide="wifi-off"></i> Conectividad</span>
+                <h2>Importante: ¿Qué pasa cuando <span class="text-gradient orange">no hay internet?</span></h2>
+            </header>
+
+            <div class="connectivity-grid">
+                <div class="connectivity-card error" data-reveal="slide-right">
+                    <div class="card-header">
+                        <div class="icon"><i data-lucide="qr-code"></i></div>
+                        <h3>Validar el QR</h3>
+                    </div>
+                    <p>El sistema necesita conectarse al servidor para confirmar que el pasajero tiene saldo real
+                        disponible y que el tickete es válido.</p>
+                    <div class="status error">
+                        <i data-lucide="alert-circle"></i>
+                        Sin conexión: NO se puede validar
+                    </div>
+                </div>
+
+                <div class="connectivity-card warning" data-reveal="slide-left">
+                    <div class="card-header">
+                        <div class="icon"><i data-lucide="map-pin"></i></div>
+                        <h3>Ubicación del Conductor</h3>
+                    </div>
+                    <p>Para que los pasajeros vean dónde viene el bus en el mapa, el teléfono del conductor debe enviar
+                        su posición GPS constantemente.</p>
+                    <div class="status warning">
+                        <i data-lucide="pause-circle"></i>
+                        Sin conexión: GPS en pausa
+                    </div>
+                </div>
+            </div>
+
+            <div class="security-warning" data-reveal="fade-up">
+                <div class="warning-icon">
+                    <i data-lucide="alert-triangle"></i>
+                </div>
+                <div>
+                    <h4>Advertencia de Seguridad</h4>
+                    <p>Sin internet el sistema <strong>NO puede ser validado</strong>. Esto es intencional para evitar
+                        fraudes, duplicación de ticketes y proteger tu dinero.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Beneficios -->
+    <section class="benefits-section">
+        <div class="container">
+            <header class="section-header center" data-reveal="fade-up">
+                <span class="section-tag">★ Beneficios Sociales</span>
+                <h2>¿Por qué es importante para <span class="text-gradient orange">Venezuela?</span> 🇻🇪</h2>
+            </header>
+
+            <div class="benefits-grid">
+                <div class="benefit-card" data-reveal="fade-up">
+                    <div class="benefit-border emerald"></div>
+                    <div class="benefit-icon emerald">🛡️</div>
+                    <h3>Reduce el manejo de efectivo</h3>
+                    <p>Disminuye significativamente el riesgo de robos para conductores y pasajeros al eliminar el
+                        dinero físico en las rutas.</p>
+                </div>
+
+                <div class="benefit-card" data-reveal="fade-up" data-delay="100">
+                    <div class="benefit-border blue"></div>
+                    <div class="benefit-icon blue">📊</div>
+                    <h3>Genera datos reales y transparentes</h3>
+                    <p>Registra cuántos viajes se hacen, cuánto dinero se recauda y cuántos conductores están activos en
+                        tiempo real.</p>
+                </div>
+
+                <div class="benefit-card" data-reveal="fade-up" data-delay="200">
+                    <div class="benefit-border orange"></div>
+                    <div class="benefit-icon orange">⏳</div>
+                    <h3>Ahorra tiempo y colas</h3>
+                    <p>Elimina la búsqueda de cambio exacto y la impresión de boletos de papel, agilizando el abordaje.
+                    </p>
+                </div>
+
+                <div class="benefit-card" data-reveal="fade-up">
+                    <div class="benefit-border purple"></div>
+                    <div class="benefit-icon purple">📶</div>
+                    <h3>Funciona con datos móviles</h3>
+                    <p>Diseñado para la realidad del país: no necesita infraestructura costosa ni WiFi, solo un teléfono
+                        inteligente estándar.</p>
+                </div>
+
+                <div class="benefit-card" data-reveal="fade-up" data-delay="100">
+                    <div class="benefit-border pink"></div>
+                    <div class="benefit-icon pink">🧍</div>
+                    <h3>Protege al pasajero</h3>
+                    <p>Historial de recargas y viajes siempre disponible como respaldo digital ante cualquier reclamo o
+                        incidencia.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section" id="faq">
+        <div class="container">
+            <header class="section-header center" data-reveal="fade-up">
+                <div class="faq-icon"><i data-lucide="help-circle"></i></div>
+                <h2>Preguntas <span class="text-gradient cyan">frecuentes</span></h2>
+                <p class="section-subtitle">Lo que siempre nos preguntan</p>
+            </header>
+
+            <div class="faq-grid">
+                <div class="faq-card" data-reveal="fade-up">
+                    <div class="faq-border cyan"></div>
+                    <h3><i data-lucide="smartphone"></i> ¿Funciona en cualquier teléfono Android?</h3>
+                    <p>¡Sí! La aplicación está optimizada para funcionar correctamente en cualquier dispositivo con
+                        Android 7.0 (Nougat) o superior.</p>
+                </div>
+
+                <div class="faq-card" data-reveal="fade-up" data-delay="100">
+                    <div class="faq-border cyan"></div>
+                    <h3><i data-lucide="building-2"></i> ¿Las asociaciones tienen que pagar?</h3>
+                    <p>Para esta etapa estudiantil, el servidor es gratuito. En una implementación real a gran escala,
+                        requeriría un plan de mantenimiento mensual.</p>
+                </div>
+
+                <div class="faq-card" data-reveal="fade-up">
+                    <div class="faq-border orange"></div>
+                    <h3><i data-lucide="signal"></i> ¿Qué pasa si el conductor no tiene señal?</h3>
+                    <p>El sistema muestra un aviso inmediato y detiene el procesamiento de pagos hasta recuperar la
+                        conexión para asegurar la integridad de los datos.</p>
+                </div>
+
+                <div class="faq-card" data-reveal="fade-up" data-delay="100">
+                    <div class="faq-border cyan"></div>
+                    <h3><i data-lucide="map"></i> ¿Podría usarse en otras ciudades?</h3>
+                    <p>¡Totalmente! La arquitectura es flexible y configurable. Se pueden crear instancias separadas
+                        para diferentes asociaciones o ciudades.</p>
+                </div>
+
+                <div class="faq-card" data-reveal="fade-up">
+                    <div class="faq-border emerald"></div>
+                    <h3><i data-lucide="lock"></i> ¿Se puede hackear el QR?</h3>
+                    <p>No. Cada código QR contiene un token cifrado único que expira después de un uso o un tiempo
+                        límite. Una captura de pantalla no servirá.</p>
+                </div>
+
+                <div class="faq-card cta" data-reveal="fade-up" data-delay="100">
+                    <i data-lucide="message-circle"></i>
+                    <h3>¿Tienes más preguntas?</h3>
+                    <p>¡Estamos aquí para responderlas!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="quote-section" data-reveal="fade-up">
+                <div class="quote-mark">"</div>
+                <blockquote>
+                    La tecnología más poderosa no es la más compleja — es la que
+                    <span class="highlight">resuelve un problema real</span> de la gente.
+                </blockquote>
+                <div class="quote-logo">
+                    🚍 ENRUTADOS VENEZUELA
+                </div>
+                <div class="quote-footer">
+                    innovación para el transporte público
+                </div>
+                <div class="divider"></div>
+            </div>
+
+            <div class="brand-section" data-reveal="fade-up">
+                <div class="logo-large">
+                    <i data-lucide="bus"></i>
+                    <span>ENRUTADOS <span class="cyan">VENEZUELA</span></span>
+                </div>
+                <p class="tagline">Innovación para el transporte público</p>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2026 Proyecto Feria Estudiantil. Todos los derechos reservados.</p>
+                <div class="footer-links">
+                    <a href="#">Términos</a>
+                    <a href="#">Privacidad</a>
+                    <a href="#">Contacto</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
