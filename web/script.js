@@ -6,7 +6,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize Lucide icons
     lucide.createIcons();
-    
+
     // Initialize all modules
     initParticles();
     initScrollReveal();
@@ -25,11 +25,11 @@ document.addEventListener('DOMContentLoaded', () => {
 function initParticles() {
     const canvas = document.getElementById('particles-canvas');
     if (!canvas) return;
-    
+
     const ctx = canvas.getContext('2d');
     let particles = [];
     let mouse = { x: null, y: null, radius: 150 };
-    
+
     // Resize canvas
     function resize() {
         canvas.width = window.innerWidth;
@@ -37,13 +37,13 @@ function initParticles() {
     }
     resize();
     window.addEventListener('resize', resize);
-    
+
     // Mouse tracking
     window.addEventListener('mousemove', (e) => {
         mouse.x = e.x;
         mouse.y = e.y;
     });
-    
+
     // Particle Class
     class Particle {
         constructor() {
@@ -55,32 +55,32 @@ function initParticles() {
             this.color = Math.random() > 0.5 ? 'rgba(6, 182, 212, ' : 'rgba(249, 115, 22, ';
             this.opacity = Math.random() * 0.5 + 0.1;
         }
-        
+
         update() {
             this.x += this.speedX;
             this.y += this.speedY;
-            
+
             // Bounce off edges
             if (this.x > canvas.width || this.x < 0) this.speedX = -this.speedX;
             if (this.y > canvas.height || this.y < 0) this.speedY = -this.speedY;
-            
+
             // Mouse interaction
             const dx = mouse.x - this.x;
             const dy = mouse.y - this.y;
             const distance = Math.sqrt(dx * dx + dy * dy);
-            
+
             if (distance < mouse.radius) {
                 const forceDirectionX = dx / distance;
                 const forceDirectionY = dy / distance;
                 const force = (mouse.radius - distance) / mouse.radius;
                 const directionX = forceDirectionX * force * 2;
                 const directionY = forceDirectionY * force * 2;
-                
+
                 this.x -= directionX;
                 this.y -= directionY;
             }
         }
-        
+
         draw() {
             ctx.fillStyle = this.color + this.opacity + ')';
             ctx.beginPath();
@@ -88,7 +88,7 @@ function initParticles() {
             ctx.fill();
         }
     }
-    
+
     // Create particles
     function init() {
         particles = [];
@@ -98,24 +98,24 @@ function initParticles() {
         }
     }
     init();
-    
+
     // Animation loop
     function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
+
         for (let i = 0; i < particles.length; i++) {
             particles[i].update();
             particles[i].draw();
-            
+
             // Connect particles
             for (let j = i; j < particles.length; j++) {
                 const dx = particles[i].x - particles[j].x;
                 const dy = particles[i].y - particles[j].y;
                 const distance = Math.sqrt(dx * dx + dy * dy);
-                
+
                 if (distance < 100) {
                     ctx.beginPath();
-                    ctx.strokeStyle = `rgba(6, 182, 212, ${0.1 * (1 - distance/100)})`;
+                    ctx.strokeStyle = `rgba(6, 182, 212, ${0.1 * (1 - distance / 100)})`;
                     ctx.lineWidth = 0.5;
                     ctx.moveTo(particles[i].x, particles[i].y);
                     ctx.lineTo(particles[j].x, particles[j].y);
@@ -123,7 +123,7 @@ function initParticles() {
                 }
             }
         }
-        
+
         requestAnimationFrame(animate);
     }
     animate();
@@ -134,11 +134,11 @@ function initParticles() {
 // ==========================================
 function initScrollReveal() {
     const reveals = document.querySelectorAll('[data-reveal]');
-    
+
     const revealOnScroll = () => {
         const windowHeight = window.innerHeight;
         const elementVisible = 100;
-        
+
         reveals.forEach((reveal) => {
             const elementTop = reveal.getBoundingClientRect().top;
             if (elementTop < windowHeight - elementVisible) {
@@ -146,7 +146,7 @@ function initScrollReveal() {
             }
         });
     };
-    
+
     window.addEventListener('scroll', revealOnScroll);
     revealOnScroll(); // Trigger once on load
 }
@@ -157,16 +157,16 @@ function initScrollReveal() {
 function initNavbar() {
     const navbar = document.getElementById('navbar');
     let lastScroll = 0;
-    
+
     window.addEventListener('scroll', () => {
         const currentScroll = window.pageYOffset;
-        
+
         if (currentScroll > 100) {
             navbar.classList.add('visible');
         } else {
             navbar.classList.remove('visible');
         }
-        
+
         lastScroll = currentScroll;
     });
 }
@@ -176,10 +176,10 @@ function initNavbar() {
 // ==========================================
 function initParallax() {
     const parallaxElements = document.querySelectorAll('.parallax-bg, .glow-orb');
-    
+
     window.addEventListener('scroll', () => {
         const scrolled = window.pageYOffset;
-        
+
         parallaxElements.forEach((el, index) => {
             const speed = el.dataset.speed || 0.5;
             const yPos = -(scrolled * speed);
@@ -194,19 +194,24 @@ function initParallax() {
 function initTypewriter() {
     const element = document.getElementById('hero-text');
     if (!element) return;
-    
-    const text = "¿Cómo funciona un sistema de transporte digital desde cero? Presentamos una solución robusta y adaptable a la realidad del país.";
+
+    const text = "¿El sistema actual de transporte contribuye al calentamiento global?|Posibles soluciones como la generación de tickets, tarjetas o incluso el dinero físico, representan una incidencia significativa en el calentamiento global.";
     let index = 0;
-    element.textContent = '';
-    
+    element.innerHTML = '';
+
     function type() {
         if (index < text.length) {
-            element.textContent += text.charAt(index);
+            const char = text.charAt(index);
+            if (char === '|') {
+                element.innerHTML += '<br><br>';
+            } else {
+                element.innerHTML += char;
+            }
             index++;
             setTimeout(type, 50);
         }
     }
-    
+
     // Start typing after a delay
     setTimeout(type, 1000);
 }
@@ -217,14 +222,14 @@ function initTypewriter() {
 function initTimeline() {
     const timeline = document.getElementById('timeline');
     const progressLine = document.getElementById('progress-line');
-    
+
     if (!timeline || !progressLine) return;
-    
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 progressLine.style.width = '100%';
-                
+
                 // Animate steps sequentially
                 const steps = document.querySelectorAll('.step');
                 steps.forEach((step, index) => {
@@ -236,7 +241,7 @@ function initTimeline() {
             }
         });
     }, { threshold: 0.3 });
-    
+
     observer.observe(timeline);
 }
 
@@ -251,7 +256,7 @@ function initSmoothScroll() {
             if (target) {
                 const offset = 100;
                 const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
-                
+
                 window.scrollTo({
                     top: targetPosition,
                     behavior: 'smooth'
@@ -269,16 +274,16 @@ document.querySelectorAll('.tech-card, .security-card, .benefit-card').forEach(c
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
-        
+
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
-        
+
         const rotateX = (y - centerY) / 20;
         const rotateY = (centerX - x) / 20;
-        
+
         card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
     });
-    
+
     card.addEventListener('mouseleave', () => {
         card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
     });
@@ -290,14 +295,14 @@ document.querySelectorAll('.tech-card, .security-card, .benefit-card').forEach(c
 function initMobileMenu() {
     const menuToggle = document.getElementById('menuToggle');
     const navLinks = document.getElementById('navLinks');
-    
+
     if (!menuToggle || !navLinks) return;
-    
+
     menuToggle.addEventListener('click', () => {
         menuToggle.classList.toggle('active');
         navLinks.classList.toggle('active');
     });
-    
+
     // Cerrar menú al hacer click en un enlace
     navLinks.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
@@ -305,7 +310,7 @@ function initMobileMenu() {
             navLinks.classList.remove('active');
         });
     });
-    
+
     // Cerrar menú al hacer scroll
     window.addEventListener('scroll', () => {
         if (navLinks.classList.contains('active')) {
@@ -321,46 +326,46 @@ function initMobileMenu() {
 function initTouchOptimizations() {
     // Detectar si es dispositivo táctil
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-    
+
     if (!isTouchDevice) return;
-    
+
     // Reducir partículas en móvil para mejor rendimiento
     const canvas = document.getElementById('particles-canvas');
     if (canvas) {
         canvas.style.opacity = '0.3';
     }
-    
+
     // Desactivar parallax en móvil para smoother scroll
     const parallaxElements = document.querySelectorAll('.parallax-bg, .glow-orb');
     parallaxElements.forEach(el => {
         el.style.transform = 'none';
     });
-    
+
     // Agregar soporte para swipe en timeline (opcional)
     const timeline = document.getElementById('timeline');
     if (timeline) {
         let touchStartX = 0;
         let touchEndX = 0;
-        
+
         timeline.addEventListener('touchstart', (e) => {
             touchStartX = e.changedTouches[0].screenX;
         }, { passive: true });
-        
+
         timeline.addEventListener('touchend', (e) => {
             touchEndX = e.changedTouches[0].screenX;
             handleSwipe();
         }, { passive: true });
-        
+
         function handleSwipe() {
             const swipeThreshold = 50;
             const diff = touchStartX - touchEndX;
-            
+
             if (Math.abs(diff) > swipeThreshold) {
                 // Opcional: implementar navegación por swipe
             }
         }
     }
-    
+
     // Scroll reveal más sensible en móvil
     const revealElements = document.querySelectorAll('[data-reveal]');
     const observerOptions = {
@@ -368,7 +373,7 @@ function initTouchOptimizations() {
         rootMargin: '0px',
         threshold: 0.1
     };
-    
+
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -376,7 +381,7 @@ function initTouchOptimizations() {
             }
         });
     }, observerOptions);
-    
+
     revealElements.forEach(el => revealObserver.observe(el));
 }
 
@@ -401,7 +406,7 @@ window.addEventListener('resize', () => {
 // ==========================================
 if ('IntersectionObserver' in window) {
     const lazyAnimations = document.querySelectorAll('.glow-orb, .signal-waves');
-    
+
     const animationObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -411,7 +416,7 @@ if ('IntersectionObserver' in window) {
             }
         });
     }, { threshold: 0.1 });
-    
+
     lazyAnimations.forEach(el => {
         el.style.animationPlayState = 'paused';
         animationObserver.observe(el);
