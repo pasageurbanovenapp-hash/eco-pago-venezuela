@@ -6,49 +6,6 @@
     <title>Frontend vs Backend - Guía para Estudiantes</title>
     <script type="module" crossorigin="" src="Frontend%20vs%20Backend%20-%20Gu%C3%ADa%20para%20Estudiantes_files/index-CcY_Y30E.js"></script>
     <link rel="stylesheet" crossorigin="" href="Frontend%20vs%20Backend%20-%20Gu%C3%ADa%20para%20Estudiantes_files/index-Cjxl645E.css">
-    <style>
-      /* Paleta de colores personalizada para coincidir con index.html */
-      :root {
-        --background: 222 49% 8%; /* #0B1120 */
-        --foreground: 0 0% 100%; /* Blanco */
-        --card: 222 41% 14%; /* #151E32 */
-        --card-foreground: 0 0% 100%;
-        --popover: 222 49% 8%;
-        --popover-foreground: 0 0% 100%;
-        --primary: 188 94% 43%; /* #06b6d4 */
-        --primary-foreground: 222 49% 8%;
-        --secondary: 222 41% 14%;
-        --secondary-foreground: 0 0% 100%;
-        --muted: 222 41% 14%;
-        --muted-foreground: 0 0% 65%;
-        --accent: 222 41% 14%;
-        --accent-foreground: 0 0% 100%;
-        --destructive: 0 84% 60%;
-        --destructive-foreground: 0 0% 100%;
-        --border: 222 41% 14%;
-        --input: 222 41% 14%;
-        --ring: 188 94% 43%;
-        --radius: 0.5rem;
-        --chart-1: 188 94% 43%; /* Cyan */
-        --chart-2: 25 94% 53%; /* Orange */
-        --chart-3: 160 84% 39%; /* Emerald */
-        --chart-4: 262 83% 58%; /* Purple */
-        --chart-5: 48 96% 53%; /* Yellow */
-      }
-      body {
-        background: radial-gradient(circle at 20% 20%, #1A2A46 0%, #0B1120 50%, #070B16 100%) !important;
-        color: #F8FAFC !important;
-      }
-      .bg-background, .bg-card, .glass, .glass-dark {
-        background-color: hsl(var(--card)) !important;
-        color: hsl(var(--card-foreground)) !important;
-      }
-      .bg-background { background: linear-gradient(135deg, #151E32 0%, #0B1120 100%) !important; }
-      .text-primary { color: #06b6d4 !important; }
-      .border, .border-l-4, .border-blue-500, .border-l-purple-500, .border-l-pink-500 {
-        border-color: rgba(6, 182, 212, 0.45) !important;
-      }
-    </style>
   <script src="Frontend%20vs%20Backend%20-%20Gu%C3%ADa%20para%20Estudiantes_files/sdk-seed.js" defer="defer"></script><script src="Frontend%20vs%20Backend%20-%20Gu%C3%ADa%20para%20Estudiantes_files/preview-widgets.min.js" async=""></script>
     <style>
       .kimi-brand-container {
@@ -110,6 +67,91 @@
         height: 18px;
         border: 0.5px solid rgba(255, 255, 255, 0.15);
         border-radius: 50%;
+      }
+    </style>
+    <style>
+      /* Ajuste de paleta para eliminar blanco y mejorar contraste */
+      :root {
+        --bg-dark: #0B1120;
+        --bg-card: #151E32;
+        --text-main: #E5E7EB;
+        --accent: #06b6d4;
+        --accent-soft: rgba(6, 182, 212, 0.16);
+      }
+
+      body, #root, section, .min-h-screen {
+        background: linear-gradient(135deg, #0B1120 0%, #151E32 100%) !important;
+        color: var(--text-main) !important;
+      }
+
+      .bg-white,
+      .bg-white\/10,
+      .bg-white\/80,
+      .bg-blue-100,
+      .bg-blue-50,
+      .bg-slate-50,
+      .glass,
+      .glass-dark,
+      .bg-background,
+      .bg-card {
+        background: linear-gradient(135deg, #151E32 0%, #0B1120 100%) !important;
+        color: var(--text-main) !important;
+        border-color: rgba(6, 182, 212, 0.25) !important;
+      }
+
+      .text-gray-900,
+      .text-gray-600,
+      .text-gray-500,
+      .text-gray-300,
+      .text-gray-700 {
+        color: #E5E7EB !important;
+      }
+
+      .text-white,
+      .text-white\/80 {
+        color: #F8FAFC !important;
+      }
+
+      .text-primary,
+      .text-cyan-400,
+      .text-blue-600,
+      .text-green-400,
+      .text-emerald-400 {
+        color: var(--accent) !important;
+      }
+
+      .border-white\/20,
+      .border-transparent,
+      .border-gray-100,
+      .border-gray-300,
+      .border-gray-200,
+      .border-gray-400 {
+        border-color: rgba(6, 182, 212, 0.3) !important;
+      }
+
+      .card-hover:hover,
+      .shadow-sm,
+      .shadow-xl,
+      .shadow-2xl {
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45) !important;
+      }
+
+      a,
+      p,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      span,
+      button {
+        color: inherit !important;
+      }
+
+      .bg-gradient-to-r,
+      .bg-gradient-to-br {
+        background-image: linear-gradient(135deg, #0f172a 0%, #0b1120 100%) !important;
       }
     </style>
   </head>
