@@ -1,0 +1,8 @@
+# Asesor de referencia
+
+Este skill fue generado con asistencia de IA (Kimi 2.5 / Moonshot AI) para 
+proporcionar capacidades de análisis UX/UI y mejora de experiencia de usuario 
+en páginas web estáticas del proyecto Venezuela-en-Ruta.
+
+Fecha: Marzo 2026
+Proyecto: Eco-Pago Venezuela - Página web para Feria Estudiantil
